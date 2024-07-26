@@ -54,49 +54,55 @@ function AddEnquiryBox() {
 
     const navigate = useNavigate();
 
+
+
+    const formatDateToYYYYMMDD = (date) => {
+        
+       
+    console.log(date);
+        const [year, month, day] = date.split('-');
     
-      
-      const formatDateToYYYYMMDD =async (date) => {
-        const [day, month, year] = await date.split('/');
-        return `${year}/${month}/${day}`;
-      };
+        console.log(`Year: ${year}, Month: ${month}, Day: ${day}`);
+    
+        return `${day}/${month}/${year}`;
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const formDatas = `{
-            "client":"${client}",
-            "end_user": "${endUser}",
-            "project_name": "${projectName}",
-            "project_stage": "${projectStage}",
-            "supply_of": "${supplyOf}",
-            "region":"${region}",
-            "status": "${status}",
-            "sector_name": "${sectorName}",
-            "business_unit": "${businessUnit}",
-            "closing_date_for_quote": "${closingDateForQuote}",
-            "quote_number": "${quoteNumber}",
-            "enquiry_received_date": "${enquiryReceivedDate}",
-            "quotation_submitted_date": "${quotationSubmittedDate}",
-            "rework_on_quote": "${reworkOnQuote}",
-            "revision_number": "${revisionNumber}",
-            "engineer_quoting": "${engineerQuoting}",
-            "approving_manager": "${approvingManager}",
-            "account_manager": "${accountManager}",
-            "estimate_value_usd": "${estimateValueUsd}",
-            "estimate_value_aed": "${estimateValueAed}",
-            "estimate_value_rev0": "${estimateValueRev0}",
-            "reason_for_revision": "${reasonForRevision}",
-            "perc_win_probability": "${`${percWinProbability}%`}",
-        }`
+        const formDatas = {
+            client,
+            end_user: endUser,
+            project_name: projectName,
+            project_stage: projectStage,
+            supply_of: supplyOf,
+            region,
+            status,
+            sector_name: sectorName,
+            business_unit: businessUnit,
+            closing_date_for_quote: formatDateToYYYYMMDD(closingDateForQuote),
+            quote_number: quoteNumber,
+            enquiry_received_date: formatDateToYYYYMMDD(enquiryReceivedDate),
+            quotation_submitted_date: formatDateToYYYYMMDD(quotationSubmittedDate),
+            rework_on_quote: reworkOnQuote,
+            revision_number: revisionNumber,
+            engineer_quoting: engineerQuoting,
+            approving_manager: approvingManager,
+            account_manager: accountManager,
+            estimate_value_usd: estimateValueUsd,
+            estimate_value_aed: estimateValueAed,
+            estimate_value_rev0: estimateValueRev0,
+            reason_for_revision: reasonForRevision,
+            perc_win_probability: `${percWinProbability}%`
+        }
 
-       
+
         try {
-            
+
             const result = await addEnquiry(formDatas);
-            
+
 
             console.log('Enquiry added successfully:', result);
-            navigate('/enquirelist'); 
+            navigate('/enquirelist');
         } catch (error) {
             console.error('Failed to add enquiry:', error);
         }
@@ -221,11 +227,12 @@ function AddEnquiryBox() {
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="closingDateForQuote">Closing Date for Quote:</label>
+                    <label htmlFor="closingDateForQuote">Closing Date for Quote:<span className="mandatory-star">*</span></label>
                     <input
                         id="closingDateForQuote"
                         name="closingDateForQuote"
                         type="date"
+                        required
                         value={closingDateForQuote}
                         onChange={(e) => setClosingDateForQuote(e.target.value)}
                     />
@@ -243,21 +250,23 @@ function AddEnquiryBox() {
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="enquiryReceivedDate">Enquiry Received Date:</label>
+                    <label htmlFor="enquiryReceivedDate">Enquiry Received Date:<span className="mandatory-star">*</span></label>
                     <input
                         id="enquiryReceivedDate"
                         name="enquiryReceivedDate"
                         type="date"
+                        required
                         value={enquiryReceivedDate}
                         onChange={(e) => setEnquiryReceivedDate(e.target.value)}
                     />
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="quotationSubmittedDate">Quotation Submitted Date:</label>
+                    <label htmlFor="quotationSubmittedDate">Quotation Submitted Date:<span className="mandatory-star">*</span></label>
                     <input
                         id="quotationSubmittedDate"
                         name="quotationSubmittedDate"
+                        required
                         type="date"
                         value={quotationSubmittedDate}
                         onChange={(e) => setQuotationSubmittedDate(e.target.value)}

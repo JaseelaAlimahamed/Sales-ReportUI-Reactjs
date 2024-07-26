@@ -84,7 +84,7 @@ export const addEnquiry = async (formDatas) => {
     console.log(formDatas);
     try {
       const token = localStorage.getItem("access_token");
-      const response = await axios.post( '/addstudent', formDatas,{
+      const response = await axios.post( '/addenquiry', formDatas,{
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -94,6 +94,20 @@ export const addEnquiry = async (formDatas) => {
       return response.data;
     } catch (error) {
       console.error('Failed to add enquiry:', error);
+      throw error;
+    }
+  };
+
+  export const deleteEnquiry = async (enquiry_id) => {
+    const token = localStorage.getItem("access_token");
+    try {
+      const response = await axios.delete(`/enquiry/delete/${enquiry_id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      return response.data;
+    } catch (error) {
       throw error;
     }
   };
