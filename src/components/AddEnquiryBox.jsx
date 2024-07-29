@@ -57,16 +57,15 @@ function AddEnquiryBox() {
 
 
     const formatDateToYYYYMMDD = (date) => {
-        
-       
-    console.log(date);
+        console.log(date);
         const [year, month, day] = date.split('-');
-    
+
         console.log(`Year: ${year}, Month: ${month}, Day: ${day}`);
-    
-        return `${day}/${month}/${year}`;
+
+        return `${day}-${month}-${year}`;
     };
 
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formDatas = {
@@ -88,9 +87,9 @@ function AddEnquiryBox() {
             engineer_quoting: engineerQuoting,
             approving_manager: approvingManager,
             account_manager: accountManager,
-            estimate_value_usd: estimateValueUsd,
-            estimate_value_aed: estimateValueAed,
-            estimate_value_rev0: estimateValueRev0,
+            estimate_value_usd: `$${estimateValueUsd}`,
+            estimate_value_aed: `${estimateValueAed}AED`,
+            estimate_value_rev0: `$${estimateValueRev0}`,
             reason_for_revision: reasonForRevision,
             perc_win_probability: `${percWinProbability}%`
         }
@@ -390,7 +389,7 @@ function AddEnquiryBox() {
                     />
                 </div>
 
-                <button type="submit" className="submit-button">Submit</button>
+                <div className='buttonBox'><button type="submit" className="submit-button">Submit</button></div>
             </form>
         </div>
     );

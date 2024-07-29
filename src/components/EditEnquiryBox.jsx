@@ -1,9 +1,9 @@
 // src/components/EditEnquiryBox.js
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { fetchEnquiry } from '../services/AdminAxios';
-import { updateEnquiry} from '../services/AdminAxios'
-import './EditEnquiryBox.css'; 
+import { deleteEnquiry, fetchEnquiry } from '../services/AdminAxios';
+import { updateEnquiry } from '../services/AdminAxios'
+import './EditEnquiryBox.css';
 
 const projectStages = [
   "BID TO BID",
@@ -29,13 +29,13 @@ const reasonsForRevision = [
 
 function EditEnquiryBox() {
 
-    const id = useParams();
-    const enquiry_id = id.enquiry_id
-    const navigate = useNavigate();
-  
-    const [data, setData] = useState(null);
-    const [successMessage, setSuccessMessage] = useState('');
-    const [errorMessage, setErrorMessage] = useState('');
+  const id = useParams();
+  const enquiry_id = id.enquiry_id
+  const navigate = useNavigate();
+
+  const [data, setData] = useState(null);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     const loadEnquiry = async () => {
@@ -50,6 +50,16 @@ function EditEnquiryBox() {
     loadEnquiry();
   }, [enquiry_id]);
 
+  const handleDelete = async () => {
+    try {
+      await deleteEnquiry(enquiry_id);
+      console.log('Enquiry deleted successfully');
+      navigate('/enquirelist');
+    } catch (error) {
+      console.error('Failed to delete enquiry:', error);
+      setErrorMessage('Failed to delete enquiry');
+    }
+  };
   const handleChange = (e) => {
     setData({
       ...data,
@@ -60,10 +70,10 @@ function EditEnquiryBox() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const message = await updateEnquiry( data);
+      const message = await updateEnquiry(data);
       setSuccessMessage(message);
       setErrorMessage('');
-      navigate('/enquirelist'); 
+      navigate('/enquirelist');
     } catch (error) {
       setErrorMessage(error.message);
     }
@@ -72,8 +82,13 @@ function EditEnquiryBox() {
 
   return (
     <div className="form-container">
+        
       <form className="enquiry-form" onSubmit={handleSubmit}>
-        <h2>Edit Enquiry</h2>
+        <div className='buttonBoxHead'><h2>Edit Enquiry</h2>
+                    <div className="form-groups">
+                     <button onClick={handleDelete} className="delete-button">Delete Enquiry</button>
+                    </div>
+                </div>
 
         <div className="form-group">
           <label htmlFor="client">Client:</label>
@@ -342,10 +357,11 @@ function EditEnquiryBox() {
         {successMessage && <div className="success-message">{successMessage}</div>}
         {errorMessage && <div className="error-message">{errorMessage}</div>}
 
-        <button type="submit" className="submit-button">Submit</button>
+        <div className='buttonBox'><button type="submit" className="submit-button">Submit</button></div>
 
-  
+
       </form>
+
     </div>
   );
 }

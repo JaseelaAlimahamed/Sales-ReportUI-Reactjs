@@ -1,6 +1,8 @@
 .table-container {
   width: 90%;
-  margin: 0 auto;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  margin-left: 2.5rem;
   padding: 20px;
   background-color: #fff;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
@@ -91,6 +93,36 @@
 
 .view-link:hover {
   text-decoration: underline;
+}
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination-button {
+  background: none;
+  border: none;
+  color: blue;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 0 10px;
+  transition: color 0.3s ease;
+}
+
+.pagination-button:hover {
+  color: black;
+}
+
+.pagination-button:disabled {
+  color: rgb(170, 166, 166);
+  cursor: default; /* Shows a not-allowed cursor */
+}
+
+.pagination-info {
+  font-size: 16px;
+  margin: 0 10px;
 }
 
 @media screen and (max-width: 768px) {

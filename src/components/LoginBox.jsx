@@ -76,7 +76,7 @@ function LoginBox() {
                         className="show-password"
                         onClick={handlePasswordToggle}
                     >
-                        {passwordVisible ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+                        {passwordVisible ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
                     </span>
                 </div>
                 <Link to="/forgot-password" className="forgot-password">Forgot password?</Link>
