@@ -2,7 +2,7 @@ import { Navigate  } from 'react-router-dom';
 
 
 
-const Authentication = ({ children }) => {
+export const Authentication = ({ children }) => {
     const data = localStorage.access_token
 
   if (!data ) {
@@ -11,4 +11,13 @@ const Authentication = ({ children }) => {
   return children;
 };
 
-export default Authentication;
+
+
+export const UnAuthentication = ({ children }) => {
+    const data = localStorage.access_token
+
+  if (data ) {
+    return <Navigate to='/enquirelist' replace />;
+  }
+  return children;
+};

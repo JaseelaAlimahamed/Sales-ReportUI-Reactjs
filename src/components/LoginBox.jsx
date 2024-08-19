@@ -3,6 +3,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { LogInAdmin } from '../services/AdminAxios';
 import './LoginBox.css';
+import GoogleLogIn from './GoogleLogIn';
 
 function LoginBox() {
     const [passwordVisible, setPasswordVisible] = useState(false);
@@ -43,10 +44,10 @@ function LoginBox() {
 
             <form className="login-form" onSubmit={handleSubmit}>
 
-                <div className="form-group">
+                <div className="form-input">
                     <label htmlFor="username">Username</label>
                 </div>
-                <div className="form-group">
+                <div className="form-input">
                     <input
                         type="text"
                         id="username"
@@ -57,11 +58,11 @@ function LoginBox() {
                         required
                     />
                 </div>
-                <div className="form-group">
+                <div className="form-input">
                     <label htmlFor="password">Password</label>
                 </div>
 
-                <div className="form-group">
+                <div className="form-input">
 
                     <input
                         id="password"
@@ -79,9 +80,14 @@ function LoginBox() {
                         {passwordVisible ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
                     </span>
                 </div>
+                
                 <Link to="/forgot-password" className="forgot-password">Forgot password?</Link>
-                <div className="form-actions">
+               
+                <div className="forms-actions">
                     <button type="submit" className="login-button">Login</button>
+                </div>
+                <div className="forms-actions">
+                    <GoogleLogIn/>
                 </div>
                 <div className="register-link">
                     <span>Don't have an account? </span>

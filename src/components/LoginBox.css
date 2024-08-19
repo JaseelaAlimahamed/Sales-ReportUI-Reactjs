@@ -18,18 +18,18 @@
   flex-direction: column;
 }
 
-.form-group {
+.form-input {
   margin-bottom: 10px;
 }
 
-.form-group label {
+.form-input label {
   display: block;
   margin-bottom: 2px;
   font-weight: bold;
 }
 
-.form-group input {
-  width: 90%;
+.form-input input {
+  width: 90% !important;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -67,10 +67,9 @@
   }
   
 
-.form-actions {
+.forms-actions {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content:space-around;
   margin-bottom: 15px;
 }
 
