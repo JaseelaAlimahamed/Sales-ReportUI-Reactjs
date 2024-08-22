@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './EnquireListBox.css';
+import { FaEye, FaEdit } from 'react-icons/fa';
 import { fetchEnquiries } from '../services/AdminAxios';
 
 function EnquireListBox() {
@@ -81,7 +82,7 @@ function EnquireListBox() {
               {columns.map((column) => (
                 <th key={column}>{column}</th>
               ))}
-              <th>Actions</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -90,15 +91,16 @@ function EnquireListBox() {
                 {columns.map((column) => (
                   <td key={column}>{item[column] ? item[column] : 'N/A'}</td>
                 ))}
-                <td>
-                  <Link to={`/view/${item.enquiry_id}`} className="view-link">
-                    View
+                <td className="sticky-column">
+                  <Link to={`/view/${item.enquiry_id}`} className="icon-button">
+                    <FaEye />
                   </Link>
                   <h4></h4>
-                  <Link to={`/edit/${item.enquiry_id}`} className="view-link">
-                    Edit
+                  <Link to={`/edit/${item.enquiry_id}`} className="icon-button">
+                    <FaEdit />
                   </Link>
                 </td>
+
               </tr>
             ))}
           </tbody>

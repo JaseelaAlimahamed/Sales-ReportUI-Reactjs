@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { LogInAdmin } from '../services/AdminAxios';
 import './LoginBox.css';
+
 import GoogleLogIn from './GoogleLogIn';
+
+import FacebookLogInBox from './FacebookLoginBox';
+
+
 
 function LoginBox() {
     const [passwordVisible, setPasswordVisible] = useState(false);
@@ -13,6 +18,7 @@ function LoginBox() {
 
     const navigate = useNavigate();
 
+   
 
     const handlePasswordToggle = () => {
         setPasswordVisible(!passwordVisible);
@@ -30,9 +36,11 @@ function LoginBox() {
                 navigate("/enquirelist");
 
             } else {
+             
                 setErrMsg("Login failed. Please try again.");
             }
         } catch (error) {
+            
             setErrMsg("Login failed. Please try again.");
         }
     }
@@ -41,7 +49,6 @@ function LoginBox() {
         <div className="login-box">
 
             <h2>Login</h2>
-
             <form className="login-form" onSubmit={handleSubmit}>
 
                 <div className="form-input">
@@ -80,20 +87,28 @@ function LoginBox() {
                         {passwordVisible ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
                     </span>
                 </div>
-                
+
                 <Link to="/forgot-password" className="forgot-password">Forgot password?</Link>
-               
+
+                {errMsg && <div className="error-message" >{errMsg}</div>}
+
                 <div className="forms-actions">
                     <button type="submit" className="login-button">Login</button>
                 </div>
-                <div className="forms-actions">
-                    <GoogleLogIn/>
-                </div>
-                <div className="register-link">
-                    <span>Don't have an account? </span>
-                    <Link to="/register">Register</Link>
-                </div>
             </form>
+            <div className="forms-actions">
+                <GoogleLogIn  onError={() => setErrMsg("Google login failed. Please try again.")} />
+            </div>
+            <div className="forms-actions">
+                
+             <FacebookLogInBox/>
+              
+            </div>
+            <div className="register-link">
+                <span>Don't have an account? </span>
+                <Link to="/register">Register</Link>
+            </div>
+
         </div>
     );
 }

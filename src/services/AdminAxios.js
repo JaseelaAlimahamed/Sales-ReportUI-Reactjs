@@ -17,6 +17,7 @@ export const LogInAdmin = async (username, password) => {
         );
         const { data } = response;
         console.log("Login successful:", data);
+        localStorage.clear();
         localStorage.setItem("access_token", data.access_token[0]);
         return data
     } catch (error) {

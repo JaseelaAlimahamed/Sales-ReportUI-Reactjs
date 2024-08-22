@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BiCode } from 'react-icons/bi';
+
 
 export const sendGoogleAuthCode = async (code, navigate) => {
   try {

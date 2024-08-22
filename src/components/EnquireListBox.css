@@ -104,7 +104,7 @@
 .pagination-button {
   background: none;
   border: none;
-  color: blue;
+  color: #007bff;
   cursor: pointer;
   font-size: 16px;
   margin: 0 10px;
@@ -139,4 +139,28 @@
   .table-container {
     padding: 10px;
   }
+}
+/* Make the icons and text blue */
+.icon-button {
+  color: #007bff;
+  display: flex;
+  align-items: center;
+  gap: 4px; /* Adds some space between icon and text */
+  text-decoration: none;
+}
+
+/* the column sticks */
+.sticky-column {
+  position: sticky;
+  right: 0; 
+  background-color: white; 
+  z-index: 1; 
+  padding: 8px;
+  text-align: center; 
+  border-left: 1px solid #ddd; 
+}
+
+
+.icon-button:hover {
+  color: darkblue;
 }

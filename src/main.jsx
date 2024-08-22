@@ -6,6 +6,7 @@ import './index.css';
 import Modal from 'react-modal';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
+
 Modal.setAppElement('#root');
 
 // Access the client ID from environment variables
@@ -16,7 +17,9 @@ root.render(
   <React.StrictMode>
     <GoogleOAuthProvider clientId={clientId}>
       <BrowserRouter>
+  
         <App />
+       
       </BrowserRouter>
     </GoogleOAuthProvider>
   </React.StrictMode>
