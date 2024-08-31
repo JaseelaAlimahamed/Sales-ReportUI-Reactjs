@@ -3,10 +3,8 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { LogInAdmin } from '../services/AdminAxios';
 import './LoginBox.css';
-
 import GoogleLogIn from './GoogleLogIn';
-
-import FacebookLogInBox from './FacebookLoginBox';
+import FacebookLogInBox from './FacebookLogInBox';
 
 
 
